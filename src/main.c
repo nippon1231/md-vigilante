@@ -4,6 +4,7 @@
 
 int main() {
     JOY_init();
+
     VDP_setScreenWidth320();
     VDP_setScreenHeight224();
 

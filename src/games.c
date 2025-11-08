@@ -15,6 +15,7 @@ void game_init() {
     game_state.player.active = TRUE;
     game_state.player.sprite = NULL;
     game_state.player.mirroir=false;
+    game_state.player.crouch=FALSE;
     // Créer le sprite du joueur
     SPR_init();
     player_init();

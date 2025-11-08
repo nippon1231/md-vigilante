@@ -11,6 +11,8 @@ typedef struct {
     u8 lives;
     bool mirroir;
     bool active;
+    bool crouch;
+    bool jump;
     Sprite* sprite;
 } Player;
 
