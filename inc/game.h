@@ -9,7 +9,7 @@ typedef struct {
     s16 x;
     s16 y;
     u8 lives;
-    u8 direction;
+    bool mirroir;
     bool active;
     Sprite* sprite;
 } Player;
@@ -20,10 +20,12 @@ typedef struct {
     u16 wave;
     bool game_over;
     bool return_to_boot;
+
 } GameState;
 // Fonctions du jeu
 void game_init();
-
+void player_init();
+void player_update();
 extern GameState game_state;
 
 #endif // _GAME_H_
