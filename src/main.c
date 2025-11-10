@@ -14,7 +14,10 @@ int main() {
 
 
         while(1) {
+         //   player_update();
+
             player_update();
+         
             SPR_update();
             SYS_doVBlankProcess();
         }      
@@ -26,4 +29,5 @@ void inGameJoyEvent(u16 joy, u16 changed, u16 state) {
 	input.state = state;
 
 	player_update();
+
 }
