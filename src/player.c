@@ -2,9 +2,9 @@
 #include "game.h"
 #include "resources.h"
 
-#define ANIM_WALK  0
-#define ANIM_KICK  1
-#define ANIM_CROUCH  2
+#define ANIM_IDLE  0
+#define ANIM_WALK  1
+#define ANIM_CROUCH  3
 
 #define PLAYER_SPEED 1
 u16 joy, oldJoy = 0;
@@ -28,13 +28,13 @@ void player_update() {
     if (!game_state.player.active) return;
      joy = JOY_readJoypad(JOY_1);     
 
-    SPR_setFrame(game_state.player.sprite, 0);
+
     // Déplacement gauche/droite
     // bouton bas lacher
         if ((oldJoy & BUTTON_DOWN) && !(joy & BUTTON_DOWN))
         {
                 game_state.player.crouch= FALSE;
-                SPR_setAnim(game_state.player.sprite,ANIM_WALK);
+                SPR_setAnim(game_state.player.sprite,ANIM_IDLE);
         }
 
     if (joy & BUTTON_LEFT) {

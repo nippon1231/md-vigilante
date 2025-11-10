@@ -15,6 +15,12 @@ typedef struct {
     bool jump;
     Sprite* sprite;
 } Player;
+typedef struct {
+	u16 joy;
+	u16 changed;
+	u16 state;
+} InputType;
+
 
 typedef struct {
     Player player;
@@ -29,5 +35,5 @@ void game_init();
 void player_init();
 void player_update();
 extern GameState game_state;
-
+extern InputType input;
 #endif // _GAME_H_
