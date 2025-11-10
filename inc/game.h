@@ -13,9 +13,10 @@ typedef struct {
     bool active;
     bool crouch;
     bool jump;
-    u8 ani_frame;
     u8 action;
     Sprite* sprite;
+    u8 ani_frame;
+    bool action_anim;   
 } Player;
 typedef struct {
 	u16 joy;
@@ -36,8 +37,11 @@ typedef struct {
 void game_init();
 void player_init();
 void player_update();
+void player_updateBouton(u16 joy);
 extern GameState game_state;
 extern InputType input;
+
+
 
 #define ANIM_IDLE  0
 #define ANIM_WALK  1
@@ -45,5 +49,5 @@ extern InputType input;
 #define ANIM_CROUCH  3
 #define ANIM_CROUCHKICK  4
 #define ANIM_PUNCH  5
-
+#define ANIM_JUMP  6
 #endif // _GAME_H_
