@@ -1,21 +1,25 @@
 #include <genesis.h>
 #include "game.h"
 #include "resources.h"
-
+#include "levels.h"
 void inGameJoyEvent(u16 joy, u16 changed, u16 state);
 InputType input;
+u16 ind = TILE_USER_INDEX;
+
+Map* levelmap1;
+
 int main() {
+
     JOY_init();
-
-    VDP_setScreenWidth320();
-    VDP_setScreenHeight224();
+levelmap1=level_init(ind);
+    PAL_setPalette(PAL1,palettelvl.data,DMA);
     JOY_setEventHandler(inGameJoyEvent);
-        game_init();
-
+    game_init();
+    MAP_scrollTo(levelmap1,0,300);
 
         while(1) {
-         //   player_update();
-            VDP_drawText("Hello Genny World!", 10, 13);
+
+            
             player_update();
          
             SPR_update();
