@@ -21,19 +21,38 @@ void setupCamera(Vect2D_u16 deadZoneCenter, u16 deadZoneWidth, u16 deadZoneHeigh
 }
 
 void updateCamera() {
-	//Update camera only if the center of the player is outside the deadZone of the camera
-	if (game_state.player.x  > cameraPosition.x + cameraDeadzone.max.x) {
-		cameraPosition.x = game_state.player.x  - cameraDeadzone.max.x;
+	int player_x_map=game_state.player.x;
+	int player_y_map=game_state.player.y;
+	int player_x_screen=player_x_map-cameraPosition.x;
+	int player_y_screenp=player_y_map-cameraPosition.y;
 
-	}else if (game_state.player.x  < cameraPosition.x + cameraDeadzone.min.x) {
-		cameraPosition.x = game_state.player.x  - cameraDeadzone.min.x;
+	int new_camera_x;
+	int new_camera_y;	
+	if(player_x_screen >  cameraDeadzone.max.x)
+	{
+		new_camera_x= player_x_screen-cameraDeadzone.max.x;
 	}
-
-
-	//Clamp camera to the limits of the level
-	cameraPosition.x = clamp(cameraPosition.x, 0, 448); // 768 - 320 = 448 (level width - screen width)
-	cameraPosition.y = clamp(cameraPosition.y, 0, 0); // 768 - 224 = 544 (level height - screen height)
-
+	else if(player_x_screen <  cameraDeadzone.min.x)
+	{
+		new_camera_x= player_x_screen-cameraDeadzone.min.x;
+	}
+	else new_camera_x=cameraPosition.x;
+	if(new_camera_x<0)
+	{
+		new_camera_x=0;
+	}else if(new_camera_x>MAP_WIDTH-325)
+	{
+		new_camera_x=MAP_WIDTH-325;
+	}
+	if((cameraPosition.x!=new_camera_x) ||(cameraPosition.y!=new_camera_y))
+	{
+		cameraPosition.x=new_camera_x;
+		cameraPosition.y=new_camera_y;
+		MAP_scrollTo(levelmap1, cameraPosition.x, cameraPosition.y);		 
+	}
+	else {
+	SPR_setPosition(game_state.player.sprite, game_state.player.x-new_camera_x, game_state.player.y-new_camera_y);
+	}
 	//Finally we update the position of the camera
-	MAP_scrollTo(levelmap1, cameraPosition.x, cameraPosition.y);
+	
 }

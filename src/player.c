@@ -3,7 +3,7 @@
 #include "resources.h"
 #include "camera.h"
 
-#define PLAYER_SPEED 1
+#define PLAYER_SPEED 1.5
 u16 joy, oldJoy = 0;
 u8 ani_currentFrame;
 void player_init() {
@@ -74,7 +74,6 @@ void player_update() {
             game_state.player.mirroir=FALSE;
             if (!game_state.player.crouch){   
                 game_state.player.x += PLAYER_SPEED;
-                if (game_state.player.x > 300) game_state.player.x += PLAYER_SPEED;
                 game_state.player.action= ANIM_WALK;  
             } 
 

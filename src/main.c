@@ -20,12 +20,11 @@ levelmap1=level_init(ind);
     JOY_setEventHandler(inGameJoyEvent);
     game_init();
     MAP_scrollTo(levelmap1,0,242);
-    setupCamera(newVector2D_u16(160, 112), 60, 0);
-        while(1) {
-
-            
+    setupCamera(newVector2D_u16(162, 112), 1, 20);
+        while(1) {            
             player_update();
             updateCamera();
+
             SPR_update();
             SYS_doVBlankProcess();
         }      
