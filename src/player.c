@@ -91,7 +91,7 @@ void player_update() {
         // Mettre à jour la position du sprite
         SPR_setHFlip(game_state.player.sprite, game_state.player.mirroir); 
         SPR_setAnim(game_state.player.sprite,game_state.player.action); 
-        SPR_setPosition(game_state.player.sprite, game_state.player.x, game_state.player.y);
+      //  SPR_setPosition(game_state.player.sprite, game_state.player.x, game_state.player.y);
         oldJoy=joy;
     }
 }

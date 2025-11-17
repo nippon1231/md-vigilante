@@ -9,7 +9,7 @@ void game_init() {
 
     PAL_setPalette(PAL0, palette_main.data, DMA) ;
      // Initialiser le joueur
-    game_state.player.x = SCREEN_WIDTH / 2 - 8;
+    game_state.player.x = SCREEN_WIDTH / 2 ;
     game_state.player.y = SCREEN_HEIGHT-80;
     game_state.player.lives = 3;
     game_state.player.active = TRUE;

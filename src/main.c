@@ -8,7 +8,7 @@ u16 ind = TILE_USER_INDEX;
 char info[10];
 Map* levelmap1;
 u16 MAP_WIDTH=768;
-#define MAP_HIGHT=256;
+#define MAP_HIGHT=242;
 #define MUR=1;
 const u16 LONG_ARRAY=71;
 static void collision();
@@ -20,7 +20,7 @@ levelmap1=level_init(ind);
     JOY_setEventHandler(inGameJoyEvent);
     game_init();
     MAP_scrollTo(levelmap1,0,242);
-    setupCamera(newVector2D_u16(140, 120), 55, 20);
+    setupCamera(newVector2D_u16(160, 112), 60, 0);
         while(1) {
 
             
