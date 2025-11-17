@@ -17,4 +17,5 @@ out/src/player.o: src/player.c c:/sgdk/inc/genesis.h c:/sgdk/inc/types.h \
  c:/sgdk/inc/task_cst.h c:/sgdk/inc/ext/flash-save/flash.h \
  c:/sgdk/inc/types.h c:/sgdk/inc/ext/flash-save/saveman.h \
  c:/sgdk/inc/ext/console.h c:/sgdk/inc/config.h c:/sgdk/inc/string.h \
- c:/sgdk/inc/maths.h c:/sgdk/inc/dma.h inc/game.h res/resources.h
+ c:/sgdk/inc/maths.h c:/sgdk/inc/dma.h inc/game.h res/resources.h \
+ inc/camera.h inc/xtypes.h inc/levels.h

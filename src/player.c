@@ -1,7 +1,7 @@
 #include <genesis.h>
 #include "game.h"
 #include "resources.h"
-
+#include "camera.h"
 
 #define PLAYER_SPEED 1
 u16 joy, oldJoy = 0;
@@ -63,7 +63,7 @@ void player_update() {
         }
         if (joy & BUTTON_UP) {
             if (!game_state.player.crouch){ 
-                game_state.player.y += PLAYER_SPEED;
+                game_state.player.y -= PLAYER_SPEED;
                 if (game_state.player.y < 0) game_state.player.y = 0;
                 game_state.player.action=ANIM_WALK;
             }
@@ -74,15 +74,7 @@ void player_update() {
             game_state.player.mirroir=FALSE;
             if (!game_state.player.crouch){   
                 game_state.player.x += PLAYER_SPEED;
-                if (game_state.player.x > SCREEN_WIDTH -10) 
-                    {
-                       // game_state.player.x = SCREEN_WIDTH;
-                         MAP_scrollTo(levelmap1,game_state.player.x-10,242);
-                    }
-                if(game_state.player.x > MAP_WIDTH -10)
-                {
-                    MAP_scrollTo(levelmap1,0,242);
-                }
+                if (game_state.player.x > 300) game_state.player.x += PLAYER_SPEED;
                 game_state.player.action= ANIM_WALK;  
             } 
 
@@ -91,7 +83,7 @@ void player_update() {
         //    game_state.player.crouch=TRUE;
         //    game_state.player.action=ANIM_CROUCH;
 
-                game_state.player.y -= PLAYER_SPEED;
+                game_state.player.y += PLAYER_SPEED;
                 if (game_state.player.y < 0) game_state.player.y = 0;
                 game_state.player.action=ANIM_WALK;
             

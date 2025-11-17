@@ -20,12 +20,12 @@ levelmap1=level_init(ind);
     JOY_setEventHandler(inGameJoyEvent);
     game_init();
     MAP_scrollTo(levelmap1,0,242);
-
+    setupCamera(newVector2D_u16(140, 120), 55, 20);
         while(1) {
 
             
             player_update();
-         
+            updateCamera();
             SPR_update();
             SYS_doVBlankProcess();
         }      
@@ -70,6 +70,6 @@ static void collision()
      sprintf(info,"%10i",((game_state.player.y>>4)*48)+(game_state.player.x>>4)+1);
     VDP_drawTextBG(BG_B,info,28,20);    
     sprintf(info,"%10i",LEVEL1_COLISION[(((game_state.player.y>>4)+4)*48)+(game_state.player.x>>4)+1]);
-    VDP_drawTextBG(BG_B,info,28,22);    
+    VDP_drawTextBG(BG_B,info,28,2);    
 
 }
