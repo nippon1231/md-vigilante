@@ -3,4 +3,5 @@
 #include <genesis.h>
 
 Map* level_init(u16);
+extern const u16 LEVEL1_COLISION[672];
 #endif

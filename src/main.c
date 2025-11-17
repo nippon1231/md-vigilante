@@ -5,9 +5,13 @@
 void inGameJoyEvent(u16 joy, u16 changed, u16 state);
 InputType input;
 u16 ind = TILE_USER_INDEX;
-
+char info[10];
 Map* levelmap1;
-
+u16 MAP_WIDTH=768;
+#define MAP_HIGHT=256;
+#define MUR=1;
+const u16 LONG_ARRAY=71;
+static void collision();
 int main() {
 
     JOY_init();
@@ -15,7 +19,7 @@ levelmap1=level_init(ind);
     PAL_setPalette(PAL1,palettelvl.data,DMA);
     JOY_setEventHandler(inGameJoyEvent);
     game_init();
-    MAP_scrollTo(levelmap1,0,300);
+    MAP_scrollTo(levelmap1,0,242);
 
         while(1) {
 
@@ -53,5 +57,19 @@ void inGameJoyEvent(u16 joy, u16 changed, u16 state) {
 
     }   
     player_updateBouton(joy);
+    collision();
     
+}
+
+static void collision()
+{
+    sprintf(info,"%10i",(game_state.player.x>>4)+1);
+    VDP_drawTextBG(BG_B,info,28,10);
+    sprintf(info,"%10i",(game_state.player.y)>>4);
+    VDP_drawTextBG(BG_B,info,28,15);
+     sprintf(info,"%10i",((game_state.player.y>>4)*48)+(game_state.player.x>>4)+1);
+    VDP_drawTextBG(BG_B,info,28,20);    
+    sprintf(info,"%10i",LEVEL1_COLISION[(((game_state.player.y>>4)+4)*48)+(game_state.player.x>>4)+1]);
+    VDP_drawTextBG(BG_B,info,28,22);    
+
 }

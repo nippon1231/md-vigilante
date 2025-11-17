@@ -38,10 +38,12 @@ void game_init();
 void player_init();
 void player_update();
 void player_updateBouton(u16 joy);
+
 extern GameState game_state;
 extern InputType input;
 
-
+extern Map* levelmap1;
+extern u16 MAP_WIDTH ;
 
 #define ANIM_IDLE  0
 #define ANIM_WALK  1

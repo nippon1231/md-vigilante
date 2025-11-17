@@ -8,7 +8,7 @@ u16 joy, oldJoy = 0;
 u8 ani_currentFrame;
 void player_init() {
     game_state.player.x = SCREEN_WIDTH / 2 - 8;
-    game_state.player.y = SCREEN_HEIGHT - 150;
+    game_state.player.y = SCREEN_HEIGHT - 90;
     game_state.player.lives = 3;
     game_state.player.active = TRUE;
     game_state.player.mirroir = FALSE;
@@ -61,21 +61,40 @@ void player_update() {
             }
 
         }
+        if (joy & BUTTON_UP) {
+            if (!game_state.player.crouch){ 
+                game_state.player.y += PLAYER_SPEED;
+                if (game_state.player.y < 0) game_state.player.y = 0;
+                game_state.player.action=ANIM_WALK;
+            }
+
+        }        
         if (joy & BUTTON_RIGHT) {
 
             game_state.player.mirroir=FALSE;
             if (!game_state.player.crouch){   
                 game_state.player.x += PLAYER_SPEED;
-                if (game_state.player.x > SCREEN_WIDTH - 16) 
-                    game_state.player.x = SCREEN_WIDTH - 16;
+                if (game_state.player.x > SCREEN_WIDTH -10) 
+                    {
+                       // game_state.player.x = SCREEN_WIDTH;
+                         MAP_scrollTo(levelmap1,game_state.player.x-10,242);
+                    }
+                if(game_state.player.x > MAP_WIDTH -10)
+                {
+                    MAP_scrollTo(levelmap1,0,242);
+                }
                 game_state.player.action= ANIM_WALK;  
             } 
 
         }
         if (joy & BUTTON_DOWN) {
-            game_state.player.crouch=TRUE;
-            game_state.player.action=ANIM_CROUCH;
+        //    game_state.player.crouch=TRUE;
+        //    game_state.player.action=ANIM_CROUCH;
 
+                game_state.player.y -= PLAYER_SPEED;
+                if (game_state.player.y < 0) game_state.player.y = 0;
+                game_state.player.action=ANIM_WALK;
+            
         }     
         // Mettre à jour la position du sprite
         SPR_setHFlip(game_state.player.sprite, game_state.player.mirroir); 
